@@ -6,7 +6,9 @@ const Books = () => {
 
   useEffect(() => {
     fetch(
-      `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=R9TwCSRwPF3Tn5mTD03A52WN3IbKis88`
+      `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${
+        import.meta.env.VITE_API_KEY
+      }`
     )
       .then((res) => res.json())
       .then((data) => setBooksList(data.results.books));
