@@ -4,18 +4,24 @@ import { useState } from "react";
 const Books = () => {
   const [booksList, setBooksList] = useState([]);
 
+  const currentDate = new Date();
+  const dateString = currentDate.toISOString().slice(0, 10);
+
+  const [myDate, setMyDate] = useState(dateString);
+
   useEffect(() => {
     fetch(
-      `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${
+      `https://api.nytimes.com/svc/books/v3/lists/${myDate}/hardcover-fiction.json?api-key=${
         import.meta.env.VITE_API_KEY
       }`
     )
       .then((res) => res.json())
       .then((data) => setBooksList(data.results.books));
-  }, []);
+  }, [myDate]);
 
   return (
     <div className="overflow-x-auto">
+      <input type="date" onChange={(e) => setMyDate(e.target.value)} />
       <table className="table">
         <thead>
           <tr>
@@ -28,7 +34,7 @@ const Books = () => {
           </tr>
         </thead>
         <tbody>
-          {booksList.map((book) => (
+          {booksList?.map((book) => (
             <tr key={book.rank}>
               <td>
                 <div className="mask mask-squircle w-12 h-12">
