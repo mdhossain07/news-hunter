@@ -1,23 +1,10 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
 
-const Popular = () => {
-  const [popularData, setPopularData] = useState([]);
-
-  useEffect(() => {
-    fetch(
-      `https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json?api-key=${
-        import.meta.env.VITE_API_KEY
-      }`
-    )
-      .then((res) => res.json())
-      .then((data) => setPopularData(data.results));
-  }, []);
-
+const Popular = ({ articles }) => {
   return (
     <div>
       <div className="overflow-x-auto">
         <table className="table">
-          {/* head */}
           <thead>
             <tr>
               <th>Title</th>
@@ -27,9 +14,7 @@ const Popular = () => {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-
-            {popularData?.map((data) => (
+            {articles?.map((data) => (
               <tr key={data.id}>
                 <th>{data.title}</th>
                 <td>{data.abstract}</td>

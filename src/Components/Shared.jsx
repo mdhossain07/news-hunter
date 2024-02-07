@@ -1,19 +1,5 @@
-import { useEffect, useState } from "react";
-
-const Shared = () => {
-  const [sharedData, setSharedData] = useState([]);
-
-  console.log(sharedData);
-
-  useEffect(() => {
-    fetch(
-      `https://api.nytimes.com/svc/mostpopular/v2/shared/7.json?api-key=${
-        import.meta.env.VITE_API_KEY
-      }`
-    )
-      .then((res) => res.json())
-      .then((data) => setSharedData(data.results));
-  }, []);
+/* eslint-disable react/prop-types */
+const Shared = ({ articles }) => {
   return (
     <div>
       <div>
@@ -31,7 +17,7 @@ const Shared = () => {
             <tbody>
               {/* row 1 */}
 
-              {sharedData?.map((data) => (
+              {articles?.map((data) => (
                 <tr key={data.id}>
                   <th>{data.title}</th>
                   <td>{data.abstract}</td>
