@@ -10,6 +10,7 @@ import SearchBar from "./SearchBar";
 const Articles = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleSearch = (text) => {
     const filteredData = articles.filter((item) =>
@@ -22,10 +23,12 @@ const Articles = () => {
     if (tabIndex === 0) {
       getPopularData().then((res) => {
         setArticles(res.results);
+        setIsLoading(false);
       });
     } else if (tabIndex === 1) {
       getSharedData().then((res) => {
         setArticles(res.results);
+        setIsLoading(false);
       });
     }
   }, [tabIndex]);
@@ -47,10 +50,10 @@ const Articles = () => {
         </TabList>
 
         <TabPanel>
-          <Popular articles={articles} />
+          <Popular articles={articles} isLoading={isLoading} />
         </TabPanel>
         <TabPanel>
-          <Shared articles={articles} />
+          <Shared articles={articles} isLoading={isLoading} />
         </TabPanel>
       </Tabs>
     </div>
