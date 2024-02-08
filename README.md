@@ -1,6 +1,6 @@
 # Project Name: News Hunter
 
-live link: https://news-hunter-theta.vercel.app/books
+live link: https://news-hunter-theta.vercel.app/
 
 ## How to run this project locally
 

@@ -30,7 +30,11 @@ const Popular = ({ articles, isLoading }) => {
                         <td>{data.published_date}</td>
 
                         <td>
-                          <a href={data.url} target="blank" className="btn ">
+                          <a
+                            href={data.url}
+                            target="blank"
+                            className="btn btn-neutral text-white"
+                          >
                             Read More
                           </a>
                         </td>
@@ -46,7 +50,11 @@ const Popular = ({ articles, isLoading }) => {
                         <td>{data.published_date}</td>
 
                         <td>
-                          <a href={data.url} target="blank" className="btn ">
+                          <a
+                            href={data.url}
+                            target="blank"
+                            className="btn btn-neutral text-white"
+                          >
                             Read More
                           </a>
                         </td>
