@@ -35,8 +35,6 @@ const Articles = () => {
 
   return (
     <div>
-      <h2>Article Page</h2>
-
       <SearchBar onSearch={handleSearch} />
 
       <Tabs

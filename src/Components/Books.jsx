@@ -18,13 +18,22 @@ const Books = () => {
       }`
     )
       .then((res) => res.json())
-      .then((data) => setBooksList(data.results?.books));
-    setIsLoading(false);
+      .then((data) => {
+        setBooksList(data.results?.books);
+        setIsLoading(false);
+      });
   }, [myDate]);
 
   return (
     <div className="overflow-x-auto">
-      <input type="date" onChange={(e) => setMyDate(e.target.value)} />
+      <div className="flex gap-10 justify-center items-center my-5">
+        <p className="font-medium">Select Date: </p>
+        <input
+          className="bg-gray-300 p-3 rounded-lg"
+          type="date"
+          onChange={(e) => setMyDate(e.target.value)}
+        />
+      </div>
       <table className="table">
         <thead>
           <tr>
@@ -38,7 +47,7 @@ const Books = () => {
         </thead>
         <tbody>
           {isLoading ? (
-            <span className="loading loading-spinner text-info text-2xl"></span>
+            <span className="loading loading-spinner mt-10 text-center text-info text-2xl"></span>
           ) : (
             <>
               {booksList?.map((book) => (
