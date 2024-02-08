@@ -45,7 +45,7 @@ const Books = () => {
         <thead>
           <tr>
             <th>Image</th>
-            <th>Name</th>
+            <th>Title</th>
             <th>Author</th>
             <th>Price</th>
             <th>Product URL</th>
