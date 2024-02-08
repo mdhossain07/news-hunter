@@ -12,6 +12,7 @@ const Books = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    let ignore = false;
     fetch(
       `https://api.nytimes.com/svc/books/v3/lists/${myDate}/hardcover-fiction.json?api-key=${
         import.meta.env.VITE_API_KEY
@@ -19,9 +20,15 @@ const Books = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        setBooksList(data.results?.books);
+        if (!ignore) {
+          setBooksList(data.results?.books);
+        }
         setIsLoading(false);
       });
+
+    return () => {
+      ignore = true;
+    };
   }, [myDate]);
 
   return (
